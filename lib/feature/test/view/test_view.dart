@@ -1,3 +1,5 @@
+import 'package:application_architecture/core/constants/enum/locale_keys_enum.dart';
+import 'package:application_architecture/core/init/cache/locale_manager.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -26,6 +28,8 @@ class _TestViewState extends State<TestView> {
 
   Widget get _buildScaffold => Scaffold(
         appBar: AppBar(
+          leading: Text(
+              LocaleManager.instance.getStringValue(PreferencesKeys.TOKEN)),
           title: buildAppBarTitle,
           actions: [
             buildIconButtonChangeTheme,
