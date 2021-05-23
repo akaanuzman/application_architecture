@@ -1,8 +1,8 @@
-import 'package:application_architecture/core/base/viewmodel/base_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
 import 'package:provider/provider.dart';
 
+import '../../../core/base/viewmodel/base_view_model.dart';
 import '../../../core/constants/enum/app_theme_enum.dart';
 import '../../../core/init/network/network_manager.dart';
 import '../../../core/init/notifier/theme_notifier.dart';

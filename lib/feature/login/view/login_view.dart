@@ -1,6 +1,7 @@
-import 'package:application_architecture/core/base/view/base_view.dart';
-import 'package:application_architecture/feature/login/viewmodel/login_view_model.dart';
 import 'package:flutter/material.dart';
+
+import '../../../core/base/view/base_view.dart';
+import '../viewmodel/login_view_model.dart';
 
 class LoginView extends StatelessWidget {
   @override

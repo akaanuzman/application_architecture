@@ -1,4 +1,4 @@
-import 'package:application_architecture/core/constants/app/app_constants.dart';
+import '../app/app_constants.dart';
 
 class ImageConstants {
   static ImageConstants? _instance;

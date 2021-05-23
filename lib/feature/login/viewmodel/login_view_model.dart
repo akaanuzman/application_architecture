@@ -1,6 +1,8 @@
-import 'package:application_architecture/core/base/viewmodel/base_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+
+import '../../../core/base/viewmodel/base_view_model.dart';
+
 part 'login_view_model.g.dart';
 
 class LoginViewModel = _LoginViewModelBase with _$LoginViewModel;

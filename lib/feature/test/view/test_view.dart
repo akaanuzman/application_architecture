@@ -58,3 +58,9 @@ class _TestViewState extends State<TestView> {
   Widget get _buildBody =>
       Observer(builder: (_) => Text(_viewModel.number.toString()));
 }
+
+extension _FormArea on _TestViewState {
+  TextFormField get mailField => TextFormField(
+        validator: (value) => value?.isValidEmail ?? "Regex is null",
+      );
+}
