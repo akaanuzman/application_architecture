@@ -1,3 +1,4 @@
+import 'package:application_architecture/core/base/viewmodel/base_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
 import 'package:provider/provider.dart';
@@ -11,12 +12,13 @@ part 'test_view_model.g.dart';
 
 class TestViewModel = _TestViewModelBase with _$TestViewModel;
 
-abstract class _TestViewModelBase with Store {
-  late BuildContext context;
+abstract class _TestViewModelBase with Store,BaseViewModel {
 
-  void setContext(BuildContext takenContext) {
-    context = takenContext;
-  }
+  @override
+  void setContext(BuildContext context) => this.context = context;
+
+  @override
+  void init(){}
 
   @observable
   int number = 0;
@@ -33,7 +35,7 @@ abstract class _TestViewModelBase with Store {
   }
 
   void changeTheme() {
-    Provider.of<ThemeNotifier>(context, listen: false)
+    Provider.of<ThemeNotifier>(context!, listen: false)
         .changeValue(ApplicationThemeEnum.DARK);
   }
 

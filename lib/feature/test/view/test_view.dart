@@ -21,7 +21,10 @@ class _TestViewState extends State<TestView> {
   Widget build(BuildContext context) {
     return BaseView<TestViewModel>(
       viewModel: _viewModel,
-      onModelReady: (model) => _viewModel = model,
+      onModelReady: (model) {
+        model.setContext(context);
+        return _viewModel = model;
+      },
       onPageBuilder: (context, value) => _buildScaffold,
     );
   }
