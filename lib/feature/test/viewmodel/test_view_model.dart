@@ -3,7 +3,9 @@ import 'package:mobx/mobx.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/constants/enum/app_theme_enum.dart';
+import '../../../core/init/network/network_manager.dart';
 import '../../../core/init/notifier/theme_notifier.dart';
+import '../model/test_model.dart';
 
 part 'test_view_model.g.dart';
 
@@ -16,13 +18,11 @@ abstract class _TestViewModelBase with Store {
     context = takenContext;
   }
 
-  void changeTheme() {
-    Provider.of<ThemeNotifier>(context, listen: false)
-        .changeValue(ApplicationThemeEnum.DARK);
-  }
-
   @observable
   int number = 0;
+
+  @observable
+  bool isLoading = false;
 
   @computed
   bool get isEven => number % 2 == 0;
@@ -30,5 +30,21 @@ abstract class _TestViewModelBase with Store {
   @action
   void incrementNumber() {
     number++;
+  }
+
+  void changeTheme() {
+    Provider.of<ThemeNotifier>(context, listen: false)
+        .changeValue(ApplicationThemeEnum.DARK);
+  }
+
+  @action
+  Future<void> getSampleRequest() async {
+    isLoading = true;
+    final testModelList =
+        await NetworkManager.instance.dioGet<TestModel>("path", TestModel());
+    if (testModelList is List) {
+      print(true);
+    }
+    isLoading = false;
   }
 }
