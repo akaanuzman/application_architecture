@@ -1,8 +1,7 @@
-import 'package:application_architecture/core/init/theme/light/light_theme_interface.dart';
-import 'package:application_architecture/core/init/theme/light/text_theme_light.dart';
 import 'package:flutter/material.dart';
 
 import 'app_theme.dart';
+import 'light/light_theme_interface.dart';
 
 class AppThemeLight extends AppTheme with ILightTheme {
   static AppThemeLight? _instance;
