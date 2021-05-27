@@ -4,7 +4,8 @@ import 'package:provider/provider.dart';
 
 import '../../../core/base/viewmodel/base_view_model.dart';
 import '../../../core/constants/enum/app_theme_enum.dart';
-import '../../../core/init/network/network_manager.dart';
+import '../../../core/constants/enum/http_request_enum.dart';
+import '../../../core/init/network/IResponseModel.dart';
 import '../../../core/init/notifier/theme_notifier.dart';
 import '../model/test_model.dart';
 
@@ -12,13 +13,12 @@ part 'test_view_model.g.dart';
 
 class TestViewModel = _TestViewModelBase with _$TestViewModel;
 
-abstract class _TestViewModelBase with Store,BaseViewModel {
-
+abstract class _TestViewModelBase with Store, BaseViewModel {
   @override
   void setContext(BuildContext context) => this.context = context;
 
   @override
-  void init(){}
+  void init() {}
 
   @observable
   int number = 0;
@@ -42,10 +42,13 @@ abstract class _TestViewModelBase with Store,BaseViewModel {
   @action
   Future<void> getSampleRequest() async {
     isLoading = true;
-    final testModelList =
-        await NetworkManager.instance.dioGet<TestModel>("path", TestModel());
-    if (testModelList is List) {
+    final response =
+        await coreDio?.coreFetch<ResponseModel<List<TestModel>>, TestModel>("x",
+            type: HttpTypes.GET, parseModel: TestModel());
+    if (response?.data is List) {
       print(true);
+    } else {
+      print(response?.error);
     }
     isLoading = false;
   }
